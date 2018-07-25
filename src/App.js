@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {createStore, combineReducers} from 'redux'
+import {updateUserAction} from './actions/userActions'
 
 function productsReducer(state = [], action) {
   return state
@@ -20,15 +21,10 @@ const allReducers = combineReducers({
   users: userReducer
 })
 
-const updateUserAction = {
-  type: 'updateUser',
-  payload: {
-    user: 'John'
-  }
-}
 
 const store = createStore(allReducers)
 store.dispatch(updateUserAction)
+console.log(store.getState())
 
 
 class App extends Component {
