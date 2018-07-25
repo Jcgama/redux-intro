@@ -1,6 +1,35 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {createStore, combineReducers} from 'redux'
+
+function productsReducer(state = [], action) {
+  return state
+}
+
+function userReducer(state = '', {type, payload}) {
+  switch (type){
+    case 'updateUser':
+      return payload
+  }
+  return state
+}
+
+const allReducers = combineReducers({
+  products: productsReducer,
+  users: userReducer
+})
+
+const updateUserAction = {
+  type: 'updateUser',
+  payload: {
+    user: 'John'
+  }
+}
+
+const store = createStore(allReducers)
+store.dispatch(updateUserAction)
+
 
 class App extends Component {
   render() {
